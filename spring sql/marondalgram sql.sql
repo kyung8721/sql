@@ -49,6 +49,9 @@ select * from `like` where `userId`=2 and `postId`=3;
 SELECT * FROM `like`;
 DROP TABLE `like`;
 
+select count(*) from `like`  where `postId`=1;
+
+
 CREATE TABLE `comments`(
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `userId`INT NOT NULL,
