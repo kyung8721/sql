@@ -8,7 +8,7 @@ CREATE TABLE `user`(
     `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
 
-DROP TABLE `user`;
+
 
 SELECT * FROM `user`;
 
@@ -22,7 +22,6 @@ CREATE TABLE `post`(
     `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
 
-DROP TABLE `post`;
 
 SELECT * FROM `post`;
 
@@ -37,6 +36,7 @@ CREATE TABLE `profile`(
 SELECT * FROM `profile`;
 
 
+
 CREATE TABLE `like`(
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `userId`INT NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE `like`(
 select * from `like` where `userId`=2 and `postId`=3;
 
 SELECT * FROM `like`;
-DROP TABLE `like`;
+
 
 select count(*) from `like`  where `postId`=1;
 
@@ -62,5 +62,5 @@ CREATE TABLE `comments`(
 )  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
 
 SELECT * FROM `comments`;
-DROP TABLE `comments`;
+
 
