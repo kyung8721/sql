@@ -1,0 +1,128 @@
+CREATE TABLE `user`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `loginId` VARCHAR(64) NOT NULL,
+    `password` VARCHAR(32) NOT NULL,
+    `salt` VARCHAR(128) NOT NULL,
+    `email` VARCHAR(128) NOT NULL,
+    `snsLogin` VARCHAR(32),
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+
+SELECT * FROM `user`;
+
+CREATE TABLE `profile`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL,
+    `profileImagePath` VARCHAR(256) DEFAULT 'https://cdn.pixabay.com/photo/2016/11/14/17/39/person-1824144_1280.png',
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+
+SELECT * FROM `profile`;
+
+CREATE TABLE `assets`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL,
+    `assetsName` VARCHAR(128) NOT NULL,
+    `balance` INT NOT NULL,
+    `lastBalance` INT,
+    `color` VARCHAR(8) NOT NULL,
+    `memo` TEXT,
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+
+SELECT * FROM `assets`;
+
+CREATE TABLE `category`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL,
+    `classification` VARCHAR(16) NOT NULL,
+    `categoryName` VARCHAR(32) NOT NULL,
+    `amount` INT NOT NULL,
+    `color` VARCHAR(8) NOT NULL,
+    `memo` TEXT,
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+
+SELECT * FROM `category`;
+
+CREATE TABLE `detailCategory`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL,
+    `categoryId` INT NOT NULL,
+    `detailCategoryName` VARCHAR(32) NOT NULL,
+    `memo` TEXT,
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+
+SELECT * FROM `detailCategory`;
+
+CREATE TABLE `fixedCost`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL,
+	`classification` VARCHAR(16) NOT NULL,
+    `period` VARCHAR(32) NOT NULL,
+    `assetsId` INT NOT NULL,
+    `categoryId` INT,
+    `detailCategoryId` INT,
+    `fixedCost` INT NOT NULL,
+    `memo` TEXT,
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+
+SELECT * FROM `fixedCost`;
+
+CREATE TABLE `budgetPrediction`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL,
+	`classification` VARCHAR(16) NOT NULL,
+    `date` TIMESTAMP NOT NULL,
+    `assetsId` INT NOT NULL,
+    `categoryId` INT,
+    `detailCategoryId` INT,
+    `budgetPredictionName` VARCHAR(128),
+    `cost` INT NOT NULL,
+    `memoImagePath` VARCHAR(256),
+    `memo` TEXT,
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+
+SELECT * FROM `budgetPrediction`;
+
+CREATE TABLE `breakdown`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL,
+	`classification` VARCHAR(16) NOT NULL,
+    `date` TIMESTAMP NOT NULL,
+    `assetsId` INT NOT NULL,
+    `categoryId` INT,
+    `detailCategoryId` INT,
+    `breakdownName` VARCHAR(128),
+    `cost` INT NOT NULL,
+    `memoImagePath` VARCHAR(256),
+    `memo` TEXT,
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+
+SELECT * FROM `breakdown`;
+
+CREATE TABLE `schedule`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL,
+	`startDate` TIMESTAMP NOT NULL,
+    `endDate` TIMESTAMP NOT NULL,
+    `scheduleName` VARCHAR(64) NOT NULL,
+    `color` VARCHAR(8) NOT NULL,
+    `memo` TEXT,
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+
+SELECT * FROM `schedule`;
